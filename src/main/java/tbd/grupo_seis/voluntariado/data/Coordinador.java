@@ -20,10 +20,10 @@ public class Coordinador {
     @Column(name = "institucion")
     private String institucion;
 
-     @Column(name = "activo")
+    @Column(name = "activo")
     private boolean activo;
 
-     //Getters
+    //Getters
 
     public Integer getId() {
         return id;
