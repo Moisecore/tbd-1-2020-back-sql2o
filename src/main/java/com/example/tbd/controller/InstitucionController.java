@@ -17,6 +17,11 @@ public class InstitucionController {
     @Autowired
     private InstitucionService institucionService;
 
+    @RequestMapping("/")
+    public String init(Model model) {
+        return "index";
+    }
+
     @RequestMapping("/institucion")
     public String index(Model model) {
         model.addAttribute("list", institucionService.getAll());

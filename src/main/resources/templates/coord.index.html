@@ -20,9 +20,9 @@
                         <th>Id</th>
                         <th>Nombre</th>
                         <th>Institucion</th>
-                        <th>Estado</th>
-                        <th>Acciones</th>
-                        <th>Acciones</th>
+                        <!-- <th>Estado</th> -->
+                        <th></th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -30,7 +30,7 @@
                         <td th:text="${coordinador.id}">
                         <td th:text="${coordinador.nombre}">
                         <td th:text="${coordinador.institucion}">
-                        <td th:text="${coordinador.activo}"></td>
+                        <!-- <td th:text="${coordinador.activo}"></td> -->
                         <td><a class="btn btn-info" th:href="@{/coordinador/edit/{id}(id=${coordinador.id})}">Editar</a></td>
                         <td><a class="btn btn-danger" th:href="@{/coordinador/softdelete/{id}(id=${coordinador.id})}">Eliminar</a></td>
                     </tr>

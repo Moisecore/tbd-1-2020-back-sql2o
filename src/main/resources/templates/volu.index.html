@@ -19,14 +19,16 @@
                     <tr>
                         <th>Id</th>
                         <th>Nombre</th>
-                        <th>Estado</th>
+                        <!-- <th>Estado</th> -->
+                        <th></th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr th:each="voluntario : ${list}" th:if="${voluntario.activo}"> <!-- BORRAR EL IF PARA EL TOTAL -->
                         <td th:text="${voluntario.id}">
                         <td th:text="${voluntario.nombre}">            
-                        <td th:text="${voluntario.activo}"></td>
+                        <!-- <td th:text="${voluntario.activo}"></td> -->
                         <td><a class="btn btn-info" th:href="@{/voluntario/edit/{id}(id=${voluntario.id})}">Editar</a></td>
                         <td><a class="btn btn-danger" th:href="@{/voluntario/softdelete/{id}(id=${voluntario.id})}">Eliminar</a></td>
                     </tr>

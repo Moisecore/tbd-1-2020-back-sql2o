@@ -23,7 +23,9 @@
                         <th>Inicio</th>
                         <th>Fin</th>
                         <th>Coord</th>
-                        <th>Estado</th>
+                        <!-- <th>Estado</th> -->
+                        <th></th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -34,7 +36,7 @@
                         <td th:text="${emergencia.inicio}">
                         <td th:text="${emergencia.fin}">
                         <td th:text="${emergencia.idcoordinador}"></td>
-                        <td th:text="${emergencia.activo}"></td>
+                        <!-- <td th:text="${emergencia.activo}"></td> -->
                         <td><a class="btn btn-info" th:href="@{/emergencia/edit/{id}(id=${emergencia.id})}">Editar</a></td>
                         <td><a class="btn btn-warning" th:href="@{/tarea/emergencia/{id}(id=${emergencia.id})}">Tareas</a></td>
                         <td><a class="btn btn-danger" th:href="@{/emergencia/softdelete/{id}(id=${emergencia.id})}">Eliminar</a></td>

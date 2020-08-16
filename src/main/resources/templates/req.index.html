@@ -19,14 +19,16 @@
                     <tr>
                         <th>Id</th>
                         <th>Descripcion</th>
-                        <th>Estado</th>
+                        <!-- <th>Estado</th> -->
+                        <th></th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr th:each="requisito : ${list}" th:if="${requisito.activo}"> <!-- BORRAR EL IF PARA EL TOTAL -->
                         <td th:text="${requisito.id}">
                         <td th:text="${requisito.descripcion}">            
-                        <td th:text="${requisito.activo}"></td>
+                        <!-- <td th:text="${requisito.activo}"></td> -->
                         <td><a class="btn btn-info" th:href="@{/requisito/edit/{id}(id=${requisito.id})}">Editar</a></td>
                         <td><a class="btn btn-danger" th:href="@{/requisito/softdelete/{id}(id=${requisito.id})}">Eliminar</a></td>
                     </tr>
