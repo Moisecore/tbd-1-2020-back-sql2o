@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tareas</title>
+
+    <!-- BOOTSTRAP-->
+    <link rel="stylesheet" href="../static/css/bootstrap.css" th:href="@{/css/bootstrap.css}">
+</head>
+<body>
+    <div class="container">
+        <br>
+        <h2 th:if="${list.isEmpty()}">No hay Tareas para mostrar :(</h2>
+        <div th:if="${!list.isEmpty()}">
+            <h2>Tareas</h2>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Id_Voluntario</th>      
+                        <th>Id_Emergencia</th>
+                        <th>Nombre</th>
+                        <th>Descripcion</th>
+                        <th>Inicio</th>
+                        <th>Fin</th>
+                        <th>Estado</th>
+                        <th>Activo</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="tarea : ${list}" th:if="${tarea.activo}"> <!-- BORRAR EL IF PARA EL TOTAL -->
+                        <td th:text="${tarea.id}">
+                        <td th:text="${tarea.idvoluntario}"> 
+                        <td th:text="${tarea.idemergencia}">
+                        <td th:text="${tarea.nombre}">
+                        <td th:text="${tarea.descripcion}">
+                        <td th:text="${tarea.inicio}"> 
+                        <td th:text="${tarea.fin}"> 
+                        <td th:text="${tarea.estado}">            
+                        <td th:text="${tarea.activo}">
+                        <td><a class="btn btn-info" th:href="@{/tarea/edit/{id}(id=${tarea.id})}">Editar</a></td>
+                        <td><a class="btn btn-danger" th:href="@{/tarea/softdelete/{id}(id=${tarea.id})}">Eliminar</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div>
+            <a href="/tarea/edit/0" class="btn btn-success">Agregar</a>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Save</title>
+
+    <!-- BOOTSTRAP-->
+    <link rel="stylesheet" href="../static/css/bootstrap.css" th:href="@{/css/bootstrap.css}">
+</head>
+<body>
+    <div class="container">
+        <h2>Insercion</h2>
+        <form action="#" th:action="@{/requisitoeme/save}" th:object="${requisitoeme}" method="POST">
+            <div class="form-group">
+                <label for="idrequisito">Id_Requisito</label>
+                <input type="number" class="form-control" name="idrequisito" th:field="*{idrequisito}" id="idrequisito">
+            </div>
+            <div class="form-group">
+                <label for="idemergencia">Id_Emergencia</label>
+                <input type="number" class="form-control" name="idemergencia" th:field="*{idemergencia}" id="idemergencia">
+            </div>
+            <input type="hidden" th:field="*{id}" name="id" id="id">
+            <input type="hidden" th:field="*{activo}" name="activo" id="activo">
+            <button type="submit" class="btn btn-success">Guardar</button>
+        </form>
+    </div>
+</body>
+</html>

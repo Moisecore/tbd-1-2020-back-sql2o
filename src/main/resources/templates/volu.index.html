@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voluntarios</title>
+
+    <!-- BOOTSTRAP-->
+    <link rel="stylesheet" href="../static/css/bootstrap.css" th:href="@{/css/bootstrap.css}">
+</head>
+<body>
+    <div class="container">
+        <br>
+        <h2 th:if="${list.isEmpty()}">No hay Voluntarios para mostrar :(</h2>
+        <div th:if="${!list.isEmpty()}">
+            <h2>Voluntarios</h2>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Nombre</th>
+                        <th>Estado</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="voluntario : ${list}" th:if="${voluntario.activo}"> <!-- BORRAR EL IF PARA EL TOTAL -->
+                        <td th:text="${voluntario.id}">
+                        <td th:text="${voluntario.nombre}">            
+                        <td th:text="${voluntario.activo}"></td>
+                        <td><a class="btn btn-info" th:href="@{/voluntario/edit/{id}(id=${voluntario.id})}">Editar</a></td>
+                        <td><a class="btn btn-danger" th:href="@{/voluntario/softdelete/{id}(id=${voluntario.id})}">Eliminar</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div>
+            <a href="/voluntario/edit/0" class="btn btn-success">Agregar</a>
+        </div>
+    </div>
+</body>
+</html>
