@@ -17,7 +17,7 @@ public class Coordinador {
     private String nombre;
 
     @Column
-    private String institucion;
+    private Long idinstitucion;
 
     @Column
     private Boolean activo = true;
@@ -38,12 +38,12 @@ public class Coordinador {
         this.nombre = nombre;
     }
 
-    public String getInstitucion() {
-        return institucion;
+    public Long getIdinstitucion() {
+        return idinstitucion;
     }
 
-    public void setInstitucion(String institucion) {
-        this.institucion = institucion;
+    public void setIdinstitucion(Long idinstitucion) {
+        this.idinstitucion = idinstitucion;
     }
 
     public Boolean getActivo() {
