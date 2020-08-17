@@ -23,6 +23,12 @@ public class VoluntarioController {
         return "volu.index";
     }
 
+    @RequestMapping("/voluntario/emergencia/{volu}")
+    public String voluntary(@PathVariable("volu") Long volu, Model model) {
+        model.addAttribute("list", voluntarioService.getAll());
+        return "query2";
+    }
+
     @GetMapping("/voluntario/edit/{id}")
     public String showSave(@PathVariable("id") Long id, Model model){
         if (id != null && id != 0) {

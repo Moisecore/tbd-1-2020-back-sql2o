@@ -24,7 +24,7 @@ public class TareaController {
     }
 
     @RequestMapping("/tarea/emergencia/{emer}")
-    public String test(@PathVariable("emer") Long emer, Model model) {
+    public String emergency(@PathVariable("emer") Long emer, Model model) {
         model.addAttribute("list", tareaService.getAll());
         return "query1";
     }
