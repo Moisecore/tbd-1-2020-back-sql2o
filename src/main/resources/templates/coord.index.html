@@ -29,7 +29,7 @@
                     <tr th:each="coordinador : ${list}" th:if="${coordinador.activo}"> <!-- BORRAR EL IF PARA EL TOTAL -->
                         <td th:text="${coordinador.id}">
                         <td th:text="${coordinador.nombre}">
-                        <td th:text="${coordinador.institucion}">
+                        <td th:text="${coordinador.idinstitucion}">
                         <!-- <td th:text="${coordinador.activo}"></td> -->
                         <td><a class="btn btn-info" th:href="@{/coordinador/edit/{id}(id=${coordinador.id})}">Editar</a></td>
                         <td><a class="btn btn-danger" th:href="@{/coordinador/softdelete/{id}(id=${coordinador.id})}">Eliminar</a></td>
