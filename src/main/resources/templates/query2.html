@@ -14,18 +14,22 @@
 
         <h2 th:if="${list.isEmpty()}"> La Emergencia no presenta voluntarios :(</h2>
         <div th:if="${!list.isEmpty()}">
-            <h2>Tareas</h2>
+            <h2>Voluntarios de la emergencia</h2>
             <table class="table">
                 <thead>
                     <tr>
                         <th>Id</th>
-                        <th>Nombre</th>
+                        <th>Id_voluntario</th>
+                        <th>Id_Emergencia</th>
+                        <th>Ranking</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr th:each="voluntario : ${list}" th:if="${voluntario.activo == true and voluntario.id == volu} "> <!-- BORRAR EL IF PARA EL TOTAL -->
-                        <td th:text="${voluntario.id}">
-                        <td th:text="${voluntario.nombre}">         
+                    <tr th:each="emervolu : ${list}" th:if="${emervolu.activo == true and emervolu.idemergencia == eme}"> <!-- BORRAR EL IF PARA EL TOTAL -->
+                        <td th:text="${emervolu.id}">
+                        <td th:text="${emervolu.idvoluntario}">         
+                        <td th:text="${emervolu.idemergencia}">        
+                        <td th:text="${emervolu.ranking}">        
                     </tr>
                 </tbody>
             </table>

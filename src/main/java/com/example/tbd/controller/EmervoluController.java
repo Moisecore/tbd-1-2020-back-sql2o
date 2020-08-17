@@ -23,6 +23,12 @@ public class EmervoluController {
         return "emer-volu.index";
     }
 
+    @RequestMapping("/emervolu/voluntario/{eme}")
+    public String voluntary(@PathVariable("eme") Long eme, Model model) {
+        model.addAttribute("list", emervoluService.getAll());
+        return "query2";
+    }
+
     @GetMapping("/emervolu/edit/{id}")
     public String showSave(@PathVariable("id") Long id, Model model){
         if (id != null && id != 0) {
