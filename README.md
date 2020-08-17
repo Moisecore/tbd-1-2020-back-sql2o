@@ -1,0 +1,26 @@
+# Respositorio Backend App Voluntariado 
+
+## Taller de Bases de Datos
+
+### Grupo 6
+* Francisco Rousseau
+* Moisés García
+* Sebastián Potocnjak
+* Ricardo Ruz
+
+### Ejecución:
+
+* IDLE recomendado -> IntelliJ o VSCode
+
+1. Levantar servidor Postgres
+2. Compilar app con Gradle 
+3. abrir "Localhot:8080/"
+
+
+### Mapeo de la App
+
+* "/" -> Index temporal que sirve de guía para los entregables del Sprint 1
+* "/Entidad/" -> Lista de todos los elementos activos de dicha entidad (Read)
+* "/Entidad/edit/id" -> Formulario que permite crear o editar, en caso de existir, una entidad (Create, Update)
+* "/Entidad/softdelete/id" -> Vista que confirma la eliminacion suave (desactivacion) de una entidad (Delete)
+* "/Entidad/delete/id" -> Vista que confirma la eliminacion real de una entidad (Delete)
