@@ -20,7 +20,7 @@
 4. Añadir el repositorio al workspace de Vscode
 5. Compilar app con Gradle (ejecutar "tbd/application/bootRun" en Gradle Tasks)
 -----------------------------------
-#### IntelliJ
+#### IntelliJ:
 4. Abrir el archivo "/build.gradle" como proyecto
 5. Ejecutar el codigo con el botón play
 -----------------------------------
