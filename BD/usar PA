@@ -1,0 +1,7 @@
+Para usar el PA se debe abrir la Query Tool en la base de datos, desde PGAdmin,
+y correr el siguiente comando:
+
+select actualizar_disponibilidad(idvoluntario)
+
+Donde idvoluntario corresponde al id del voluntario al que se le quiere actualizar su disponibilidad
+(o sea que participa en una emergencia cuya fecha de fin ya pasó)
