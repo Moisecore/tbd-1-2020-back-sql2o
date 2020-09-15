@@ -1,9 +1,8 @@
-# Respositorio Backend App Voluntariado 
+# Repositorio Backend App Voluntariado 
 
 ## Taller de Bases de Datos
 
 ### Grupo 6
-* Francisco Rousseau
 * Moisés García
 * Sebastián Potocnjak
 * Ricardo Ruz
@@ -14,7 +13,7 @@
 
 1. Levantar servidor PostgreSQL 12
 2. Clonar el repositorio
-3. Completar credenciales en "src/main/resources/Application.properties"
+3. Completar credenciales en "src/main/java/com.example.tbd/repository/DatabaseContext"
 -----------------------------------
 #### VSCODE: (Requiere plugin de Gradle)
 4. Añadir el repositorio al workspace de Vscode

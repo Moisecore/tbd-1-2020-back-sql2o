@@ -1,53 +1,18 @@
 package com.example.tbd.model;
 
-import java.sql.Date;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-
-
-@Entity
 public class Emergencia {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    @Column
-    private Long idcoordinador;
-
-    @Column
+    private int id;
     private String nombre;
-
-    @Column
-    private Date inicio;
-
-    @Column
-    private Date fin;
-
-    @Column
     private String descripcion;
-
-    @Column
     private Boolean activo = true;
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
-    }
-
-    public Long getIdcoordinador() {
-        return idcoordinador;
-    }
-
-    public void setIdcoordinador(Long idcoordinador) {
-        this.idcoordinador = idcoordinador;
     }
 
     public String getNombre() {
@@ -56,22 +21,6 @@ public class Emergencia {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
-    }
-
-    public Date getInicio() {
-        return inicio;
-    }
-
-    public void setInicio(Date inicio) {
-        this.inicio = inicio;
-    }
-
-    public Date getFin() {
-        return fin;
-    }
-
-    public void setFin(Date fin) {
-        this.fin = fin;
     }
 
     public String getDescripcion() {
