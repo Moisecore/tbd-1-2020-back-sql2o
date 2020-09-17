@@ -1,5 +1,6 @@
 package com.example.tbd.repository;
 
+import com.example.tbd.model.Habilidad;
 import com.example.tbd.model.Voluntario;
 import com.example.tbd.model.VoluntarioHabilidad;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,8 +12,15 @@ import java.util.List;
 @Repository
 public class VoluntarioHabilidadRepositoryImp implements VoluntarioHabilidadRepository{
 
-    @Autowired
+    //@Autowired
     private Sql2o sql2o;
+
+    public VoluntarioHabilidadRepositoryImp(){
+        this.sql2o = new Sql2o(
+                "jdbc:postgresql://127.0.0.1:5432/voluntariado-sql2o",
+                "postgres",
+                "passgreSQL13");
+    }
 
     // Obtener todos los voluntarioHabilidad (Read)
     @Override
@@ -54,6 +62,36 @@ public class VoluntarioHabilidadRepositoryImp implements VoluntarioHabilidadRepo
                 "VALUES (:idvoluntario, :idhabilidad, true)";
 
         try(Connection conn = sql2o.open()){
+            Voluntario vol = conn.createQuery("SELECT * " +
+                    "FROM voluntario WHERE id = :idvoluntario")
+                    .addParameter("idvoluntario", voluntarioHabilidad.getIdvoluntario())
+                    .executeAndFetchFirst(Voluntario.class);
+            if(vol == null){
+                System.out.println("Error: idvoluntario no existe");
+                return null;
+            }
+
+            Habilidad hab = conn.createQuery("SELECT * " +
+                    "FROM habilidad WHERE id = :idhabilidad")
+                    .addParameter("idhabilidad", voluntarioHabilidad.getIdhabilidad())
+                    .executeAndFetchFirst(Habilidad.class);
+            if(hab == null){
+                System.out.println("Error: idhabilidad no existe");
+                return null;
+            }
+
+            VoluntarioHabilidad volHab = conn.createQuery("SELECT * " +
+                    "FROM voluntariohabilidad " +
+                    "WHERE idvoluntario = :idvoluntario " +
+                    "AND idhabilidad = :idhabilidad")
+                    .addParameter("idvoluntario", voluntarioHabilidad.getIdvoluntario())
+                    .addParameter("idhabilidad", voluntarioHabilidad.getIdhabilidad())
+                    .executeAndFetchFirst(VoluntarioHabilidad.class);
+            if(volHab != null){
+                System.out.println("Error: relacion Voluntario-Habilidad ya existe");
+                return volHab;
+            }
+
             int insertedId = (int) conn.createQuery(sql, true)
                     .addParameter("idvoluntario", voluntarioHabilidad.getIdvoluntario())
                     .addParameter("idhabilidad", voluntarioHabilidad.getIdhabilidad())

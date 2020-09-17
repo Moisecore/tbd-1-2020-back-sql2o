@@ -11,16 +11,16 @@ import java.util.List;
 public class VoluntarioRepositoryImp implements VoluntarioRepository {
 
     @Autowired
-    private Sql2o sql2o;
+    private Sql2o[] sql2o;
 
     // Obtener todos los voluntarios (Read)
     @Override
-    public List<Voluntario> getAllVoluntarios() {
+    public List<Voluntario> getAllVoluntarios(int i) {
         String sql = "SELECT * " +
                 "FROM voluntario " +
                 "ORDER BY id";
 
-        try(Connection conn = sql2o.open()){
+        try(Connection conn = sql2o[i].open()){
             return conn.createQuery(sql)
                     .executeAndFetch(Voluntario.class);
         } catch (Exception e) {
@@ -36,7 +36,7 @@ public class VoluntarioRepositoryImp implements VoluntarioRepository {
                 "FROM voluntario " +
                 "WHERE id = :id";
 
-        try(Connection conn = sql2o.open()){
+        try(Connection conn = sql2o[0].open()){
             return conn.createQuery(sql)
                     .addParameter("id", id)
                     .executeAndFetchFirst(Voluntario.class);
@@ -52,7 +52,7 @@ public class VoluntarioRepositoryImp implements VoluntarioRepository {
         String sql = "INSERT INTO voluntario (nombre, activo) " +
                 "VALUES (:nombre, true)";
 
-        try(Connection conn = sql2o.open()){
+        try(Connection conn = sql2o[0].open()){
             int insertedId = (int) conn.createQuery(sql, true)
                     .addParameter("nombre", voluntario.getNombre())
                     .executeUpdate()
@@ -72,7 +72,7 @@ public class VoluntarioRepositoryImp implements VoluntarioRepository {
                 "SET nombre = :nombre, activo = :activo " +
                 "WHERE id = :id";
 
-        try(Connection conn = sql2o.open()){
+        try(Connection conn = sql2o[0].open()){
             Voluntario vol = conn.createQuery("SELECT * " +
                     "FROM voluntario WHERE id = :id")
                     .addParameter("id", id)
@@ -110,7 +110,7 @@ public class VoluntarioRepositoryImp implements VoluntarioRepository {
                 "SET activo = false " +
                 "WHERE id = :id";
 
-        try(Connection conn = sql2o.open()){
+        try(Connection conn = sql2o[0].open()){
             int deletedId = (int) conn.createQuery(sql)
                     .addParameter("id", id)
                     .executeUpdate()

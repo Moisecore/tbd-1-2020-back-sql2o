@@ -10,8 +10,15 @@ import java.util.List;
 @Repository
 public class HabilidadRepositoryImp implements HabilidadRepository{
 
-    @Autowired
+    //@Autowired
     private Sql2o sql2o;
+
+    public HabilidadRepositoryImp(){
+        this.sql2o = new Sql2o(
+                "jdbc:postgresql://127.0.0.1:5432/voluntariado-sql2o",
+                "postgres",
+                "passgreSQL13");
+    }
 
     // Obtener todas las habilidades (Read)
     @Override
