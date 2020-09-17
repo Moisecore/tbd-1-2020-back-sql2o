@@ -15,12 +15,12 @@ public class VoluntarioRepositoryImp implements VoluntarioRepository {
 
     // Obtener todos los voluntarios (Read)
     @Override
-    public List<Voluntario> getAllVoluntarios(int i) {
+    public List<Voluntario> getAllVoluntarios(int db) {
         String sql = "SELECT * " +
                 "FROM voluntario " +
                 "ORDER BY id";
 
-        try(Connection conn = sql2o[i].open()){
+        try(Connection conn = sql2o[db].open()){
             return conn.createQuery(sql)
                     .executeAndFetch(Voluntario.class);
         } catch (Exception e) {
@@ -31,12 +31,12 @@ public class VoluntarioRepositoryImp implements VoluntarioRepository {
 
     // Obtener un voluntario por id (Read)
     @Override
-    public Voluntario getVoluntarioById(int id){
+    public Voluntario getVoluntarioById(int db, int id){
         String sql = "SELECT * " +
                 "FROM voluntario " +
                 "WHERE id = :id";
 
-        try(Connection conn = sql2o[0].open()){
+        try(Connection conn = sql2o[db].open()){
             return conn.createQuery(sql)
                     .addParameter("id", id)
                     .executeAndFetchFirst(Voluntario.class);
@@ -105,12 +105,12 @@ public class VoluntarioRepositoryImp implements VoluntarioRepository {
 
     // "Elimina" un voluntario por id (Delete) (sólo lo desactiva)
     @Override
-    public int deleteVoluntarioById(int id){
+    public int deleteVoluntarioById(int db, int id){
         String sql = "UPDATE voluntario " +
                 "SET activo = false " +
                 "WHERE id = :id";
 
-        try(Connection conn = sql2o[0].open()){
+        try(Connection conn = sql2o[db].open()){
             int deletedId = (int) conn.createQuery(sql)
                     .addParameter("id", id)
                     .executeUpdate()

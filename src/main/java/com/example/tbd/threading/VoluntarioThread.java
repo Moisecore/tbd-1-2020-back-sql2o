@@ -7,12 +7,14 @@ public class VoluntarioThread extends Thread{
     private final VoluntarioRepository voluntarioRepository;
     private int databaseNumber;
     private String funcType;
+    private int id;
     private Object retorno;
 
-    public VoluntarioThread(VoluntarioRepository voluntarioRepository, int i, String func){
+    public VoluntarioThread(VoluntarioRepository voluntarioRepository, int i, String func, int id){
         this.voluntarioRepository = voluntarioRepository;
         this.databaseNumber = i;
         this.funcType = func;
+        this.id = id;
     }
 
     public void run(){
@@ -21,6 +23,12 @@ public class VoluntarioThread extends Thread{
             switch (funcType){
                 case "getAll":
                     retorno = voluntarioRepository.getAllVoluntarios(this.databaseNumber);
+                    break;
+                case "getById":
+                    retorno = voluntarioRepository.getVoluntarioById(this.databaseNumber, this.id);
+                    break;
+                case "deleteById":
+                    retorno = voluntarioRepository.deleteVoluntarioById(this.databaseNumber, this.id);
                     break;
             }
 

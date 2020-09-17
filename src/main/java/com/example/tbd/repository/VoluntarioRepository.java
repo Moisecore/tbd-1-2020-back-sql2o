@@ -5,10 +5,10 @@ import java.util.List;
 
 public interface VoluntarioRepository {
 
-    public List<Voluntario> getAllVoluntarios(int i);
-    public Voluntario getVoluntarioById(int id);
+    public List<Voluntario> getAllVoluntarios(int db);
+    public Voluntario getVoluntarioById(int db, int id);
     public Voluntario createVoluntario(Voluntario voluntario);
     public Voluntario updateVoluntario(int id, Voluntario voluntario);
-    public int deleteVoluntarioById(int id);
+    public int deleteVoluntarioById(int db, int id);
 
 }

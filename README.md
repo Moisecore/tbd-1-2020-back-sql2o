@@ -28,8 +28,7 @@
 
 ### Mapeo de la App
 
-* "/" -> Index temporal que sirve de guía para los entregables del Sprint 1
-* "/Entidad/" -> Lista de todos los elementos activos de dicha entidad (Read)
-* "/Entidad/edit/id" -> Formulario que permite crear o editar, en caso de existir, una entidad (Create, Update)
-* "/Entidad/softdelete/id" -> Vista que confirma la eliminacion suave (desactivacion) de una entidad (Delete)
-* "/Entidad/delete/id" -> Vista que confirma la eliminacion real de una entidad (Delete)
+* GET "/" -> Inicio
+* GET "/voluntario/" -> Lista de todos los voluntarios (Read)
+* GET "/voluntario/id" -> Busca un voluntario con la id especificada (Read)
+* DELETE "voluntario/id" -> "Borra" un voluntario con la id especificada (Delete)

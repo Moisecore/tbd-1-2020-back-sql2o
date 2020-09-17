@@ -7,7 +7,7 @@ import org.sql2o.Sql2o;
 @Configuration
 public class DatabaseContext {
 
-    public static int cantDatabases = 2;
+    public static int cantDatabases = 3;
 
     //Definir url de la BD, usuario y password
     //Ejemplo: jdbc:postgresql://127.0.0.1:5432/postgres, usuario, password
@@ -21,8 +21,11 @@ public class DatabaseContext {
                 new Sql2o(
                     "jdbc:postgresql://127.0.0.1:5432/voluntariado-db",
                     "postgres",
-                    "passgreSQL13"
-                )
+                    "passgreSQL13"),
+                new Sql2o(
+                    "jdbc:postgresql://127.0.0.1:5432/voluntariado-poi",
+                    "postgres",
+                    "passgreSQL13")
         };
     }
 

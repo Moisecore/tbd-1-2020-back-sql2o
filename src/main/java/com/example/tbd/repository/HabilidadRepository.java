@@ -5,7 +5,7 @@ import java.util.List;
 
 public interface HabilidadRepository {
 
-    public List<Habilidad> getAllHabilidades();
+    public List<Habilidad> getAllHabilidades(int i);
     public Habilidad getHabilidadById(int id);
     public Habilidad createHabilidad(Habilidad habilidad);
     public Habilidad updateHabilidad(int id, Habilidad habilidad);

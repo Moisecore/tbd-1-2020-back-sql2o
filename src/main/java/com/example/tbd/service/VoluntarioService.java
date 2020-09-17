@@ -32,7 +32,7 @@ public class VoluntarioService{
         int dbs = DatabaseContext.cantDatabases;
 
         for(i = 0; i < dbs; i++){
-            voluntarioThread[i] = new VoluntarioThread(this.voluntarioRepository, i, "getAll");
+            voluntarioThread[i] = new VoluntarioThread(this.voluntarioRepository, i, "getAll", -1);
             voluntarioThread[i].start();
         }
         for(i = 0; i < dbs; i++){
@@ -55,8 +55,29 @@ public class VoluntarioService{
 
     // Obtener un voluntario por id (Read)
     @GetMapping("/voluntario/{id}")
-    public Voluntario getVoluntarioById(@PathVariable("id") int id){
-        return voluntarioRepository.getVoluntarioById(id);
+    public Voluntario getVoluntarioById(@PathVariable("id") int id) throws Exception{
+        //return voluntarioRepository.getVoluntarioById(id);
+
+        Voluntario respuesta = null;
+        int i;
+        int dbs = DatabaseContext.cantDatabases;
+
+        for(i = 0; i < dbs; i++){
+            voluntarioThread[i] = new VoluntarioThread(this.voluntarioRepository, i, "getById", id);
+            voluntarioThread[i].start();
+        }
+        for(i = 0; i < dbs; i++){
+            voluntarioThread[i].join();
+            respuestas[i] = voluntarioThread[i].getRetorno();
+        }
+        for(i = 0; i < dbs; i++){
+            if(respuestas[i] != null){
+                respuesta = (Voluntario) respuestas[i];
+                break;
+            }
+        }
+
+        return respuesta;
     }
 
     // Crear un voluntario nuevo (Create)
@@ -76,8 +97,29 @@ public class VoluntarioService{
 
     // "Elimina" un voluntario por id (Delete) (sólo lo desactiva)
     @DeleteMapping("/voluntario/{id}")
-    public int deleteVoluntarioById(@PathVariable("id") int id){
-        return voluntarioRepository.deleteVoluntarioById(id);
+    public int deleteVoluntarioById(@PathVariable("id") int id) throws Exception{
+        //return voluntarioRepository.deleteVoluntarioById(id);
+
+        int respuesta = -2;
+        int i;
+        int dbs = DatabaseContext.cantDatabases;
+
+        for(i = 0; i < dbs; i++){
+            voluntarioThread[i] = new VoluntarioThread(this.voluntarioRepository, i, "deleteById", id);
+            voluntarioThread[i].start();
+        }
+        for(i = 0; i < dbs; i++){
+            voluntarioThread[i].join();
+            respuestas[i] = voluntarioThread[i].getRetorno();
+        }
+        for(i = 0; i < dbs; i++){
+            if(respuestas[i] != null){
+                respuesta = (int) respuestas[i];
+                break;
+            }
+        }
+
+        return respuesta;
     }
 
 }

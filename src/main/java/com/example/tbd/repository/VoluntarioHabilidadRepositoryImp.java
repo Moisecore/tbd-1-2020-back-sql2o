@@ -12,24 +12,17 @@ import java.util.List;
 @Repository
 public class VoluntarioHabilidadRepositoryImp implements VoluntarioHabilidadRepository{
 
-    //@Autowired
-    private Sql2o sql2o;
-
-    public VoluntarioHabilidadRepositoryImp(){
-        this.sql2o = new Sql2o(
-                "jdbc:postgresql://127.0.0.1:5432/voluntariado-sql2o",
-                "postgres",
-                "passgreSQL13");
-    }
+    @Autowired
+    private Sql2o[] sql2o;
 
     // Obtener todos los voluntarioHabilidad (Read)
     @Override
-    public List<VoluntarioHabilidad> getAllVoluntarioHabilidad() {
+    public List<VoluntarioHabilidad> getAllVoluntarioHabilidad(int i) {
         String sql = "SELECT * " +
                 "FROM voluntariohabilidad " +
                 "ORDER BY id";
 
-        try(Connection conn = sql2o.open()){
+        try(Connection conn = sql2o[i].open()){
             return conn.createQuery(sql)
                     .executeAndFetch(VoluntarioHabilidad.class);
         } catch (Exception e) {
@@ -45,7 +38,7 @@ public class VoluntarioHabilidadRepositoryImp implements VoluntarioHabilidadRepo
                 "FROM voluntariohabilidad " +
                 "WHERE id = :id";
 
-        try(Connection conn = sql2o.open()){
+        try(Connection conn = sql2o[0].open()){
             return conn.createQuery(sql)
                     .addParameter("id", id)
                     .executeAndFetchFirst(VoluntarioHabilidad.class);
@@ -61,7 +54,7 @@ public class VoluntarioHabilidadRepositoryImp implements VoluntarioHabilidadRepo
         String sql = "INSERT INTO voluntariohabilidad (idvoluntario, idhabilidad, activo) " +
                 "VALUES (:idvoluntario, :idhabilidad, true)";
 
-        try(Connection conn = sql2o.open()){
+        try(Connection conn = sql2o[0].open()){
             Voluntario vol = conn.createQuery("SELECT * " +
                     "FROM voluntario WHERE id = :idvoluntario")
                     .addParameter("idvoluntario", voluntarioHabilidad.getIdvoluntario())
@@ -115,7 +108,7 @@ public class VoluntarioHabilidadRepositoryImp implements VoluntarioHabilidadRepo
                 "activo = :activo " +
                 "WHERE id = :id";
 
-        try(Connection conn = sql2o.open()){
+        try(Connection conn = sql2o[0].open()){
             VoluntarioHabilidad volHab = conn.createQuery("SELECT * " +
                     "FROM voluntariohabilidad WHERE id = :id")
                     .addParameter("id", id)
@@ -159,7 +152,7 @@ public class VoluntarioHabilidadRepositoryImp implements VoluntarioHabilidadRepo
                 "SET activo = false " +
                 "WHERE id = :id";
 
-        try(Connection conn = sql2o.open()){
+        try(Connection conn = sql2o[0].open()){
             int deletedId = (int) conn.createQuery(sql)
                     .addParameter("id", id)
                     .executeUpdate()
